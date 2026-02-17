@@ -8,6 +8,10 @@ This project is configured for a vertical (portrait) display used as a smart mir
 *   **Computer**: Raspberry Pi 5 (running Wayfire/Wayland)
 *   **Display Controller**: LM40SAMFHD700AG25WV
 *   **Control Interface**: DDC/CI via `ddcutil`
+*   **Power System**:
+    *   **Integrated Supply**: MEGMEET MP118TX (Monitor's internal PSU).
+    *   **Integration**: Tapping into the **12V rail**.
+    *   **Conversion**: [Klnuoxj 12V to 5V 3A USB-C Buck Converter](https://www.amazon.com/Klnuoxj-Converter-Interface-Waterproof-Compatible/dp/B0CRVW7N2J) powering the Raspberry Pi 5 directly from the monitor board.
 
 ## Key Features
 
