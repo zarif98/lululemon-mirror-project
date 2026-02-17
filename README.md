@@ -31,9 +31,7 @@ This project is configured for a vertical (portrait) display used as a smart mir
 *   **Enhanced UI**: Custom brightness and volume sliders added to `MMM-Remote-Control`.
 *   **Real-time Sync**: Power and volume changes are synchronized instantly across all connected remote devices.
 
-## Configuration Details
-*   **Location**: San Francisco, CA (TimeZone: `America/Los_Angeles`).
-*   **Weather**: Localized for SF coordinates for maximum accuracy.
+
 
 ## Installation
 
