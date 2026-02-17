@@ -1,55 +1,46 @@
-# ![MagicMirror²: The open source modular smart mirror platform.](.github/header.png)
+# Lululemon Mirror Project
 
-<p style="text-align: center">
-  <a href="https://choosealicense.com/licenses/mit">
-  <img src="https://img.shields.io/badge/license-MIT-blue.svg" alt="License">
- </a>
- <img src="https://img.shields.io/github/actions/workflow/status/magicmirrororg/magicmirror/automated-tests.yaml" alt="GitHub Actions">
- <img src="https://img.shields.io/github/check-runs/magicmirrororg/magicmirror/master" alt="Build Status">
- <a href="https://github.com/MagicMirrorOrg/MagicMirror">
-  <img src="https://img.shields.io/github/stars/magicmirrororg/magicmirror?style=social" alt="GitHub Stars">
- </a>
-</p>
+A customized MagicMirror² installation running on a Raspberry Pi 5 with an **LM40SAMFHD700AG25WV** controller board.
 
-**MagicMirror²** is an open source modular smart mirror platform. With a growing list of installable modules, the **MagicMirror²** allows you to convert your hallway or bathroom mirror into your personal assistant. **MagicMirror²** is built by the creator of [the original MagicMirror](https://michaelteeuw.nl/tagged/magicmirror) with the incredible help of a [growing community of contributors](https://github.com/MagicMirrorOrg/MagicMirror/graphs/contributors).
+This project is configured for a vertical (portrait) display used as a smart mirror, featuring advanced hardware control and remote management.
 
-MagicMirror² focuses on a modular plugin system and uses [Electron](https://www.electronjs.org/) as an application wrapper. So no more web server or browser installs necessary!
+## Hardware
+*   **Computer**: Raspberry Pi 5 (running Wayfire/Wayland)
+*   **Display Controller**: LM40SAMFHD700AG25WV
+*   **Control Interface**: DDC/CI via `ddcutil`
 
-![Animated demonstration of MagicMirror²](https://magicmirror.builders/img/demo.gif)
+## Key Features
 
-## Documentation
+### 🖥️ Display Control
+*   **Portrait Mode**: The system is permanently configured for 90-degree rotation.
+*   **Smart Power**:
+    *   Turn the monitor ON/OFF remotely.
+    *   **Auto-Rotation Fix**: Automatically re-applies rotation rules when the monitor wakes up to prevent orientation reset issues.
+    *   **State Persistence**: Uses a file-based lock (`monitor_status.txt`) to ensure the remote control always shows the correct power state, even after reboots or browser refreshes.
 
-For the full documentation including **[installation instructions](https://docs.magicmirror.builders/getting-started/installation.html)**, please visit our dedicated documentation website: [https://docs.magicmirror.builders](https://docs.magicmirror.builders).
+### 🔊 Sound Management
+*   **Hardware Volume**: Direct control of the monitor's built-in speakers via DDC commands.
+*   **Mute Toggle**: One-click mute/unmute from the remote interface.
+*   **Auditory Feedback**: Plays a subtle "ding" sound when volume is adjusted to confirm the command was received.
 
-## Links
+### 📱 Remote Interface
+*   **Enhanced UI**: Custom brightness and volume sliders added to `MMM-Remote-Control`.
+*   **Real-time Sync**: Power and volume changes are synchronized instantly across all connected remote devices.
 
-- Website: [https://magicmirror.builders](https://magicmirror.builders)
-- Documentation: [https://docs.magicmirror.builders](https://docs.magicmirror.builders)
-- Forum: [https://forum.magicmirror.builders](https://forum.magicmirror.builders)
-  - Technical discussions: <https://forum.magicmirror.builders/category/11/core-system>
-- Discord: [https://discord.gg/J5BAtvx](https://discord.gg/J5BAtvx)
-- Blog: [https://michaelteeuw.nl/tagged/magicmirror](https://michaelteeuw.nl/tagged/magicmirror)
-- Donations: [https://magicmirror.builders/#donate](https://magicmirror.builders/#donate)
+## Configuration Details
+*   **Location**: San Francisco, CA (TimeZone: `America/Los_Angeles`).
+*   **Weather**: Localized for SF coordinates for maximum accuracy.
 
-## Contributing Guidelines
+## Installation
 
-Contributions of all kinds are welcome, not only in the form of code but also with regards to
+This repository is a fork of [MagicMirror²](https://github.com/MagicMirrorOrg/MagicMirror).
+To use this configuration, clone this repository and install dependencies:
 
-- bug reports
-- documentation
-- translations
+```bash
+git clone https://github.com/zarif98/lululemon-mirror-project.git
+cd lululemon-mirror-project
+npm install
+```
 
-For the full contribution guidelines, check out: [https://docs.magicmirror.builders/about/contributing.html](https://docs.magicmirror.builders/about/contributing.html)
-
-## Enjoying MagicMirror? Consider a donation!
-
-MagicMirror² is Open Source and free. That doesn't mean we don't need any money.
-
-Please consider a donation to help us cover the ongoing costs like webservers and email services.
-If we receive enough donations we might even be able to free up some working hours and spend some extra time improving the MagicMirror² core.
-
-To donate, please follow [this](https://www.paypal.com/cgi-bin/webscr?cmd=_s-xclick&hosted_button_id=G5D8E9MR5DTD2&source=url) link.
-
-<p style="text-align: center">
-  <a href="https://forum.magicmirror.builders/topic/728/magicmirror-is-voted-number-1-in-the-magpi-top-50"><img src="https://magicmirror.builders/img/magpi-best-watermark-custom.png" width="150" alt="MagPi Top 50"></a>
-</p>
+## Credits
+Based on the amazing work by the [MagicMirror² Community](https://magicmirror.builders/).
