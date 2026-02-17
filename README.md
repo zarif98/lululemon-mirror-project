@@ -1,5 +1,7 @@
 # Lululemon Mirror Project
 
+![Lululemon Mirror Project](docs/images/IMG_8565.jpg)
+
 A customized MagicMirror² installation running on a Raspberry Pi 5 with an **LM40SAMFHD700AG25WV** controller board.
 
 This project is configured for a vertical (portrait) display used as a smart mirror, featuring advanced hardware control and remote management.
@@ -12,6 +14,14 @@ This project is configured for a vertical (portrait) display used as a smart mir
     *   **Integrated Supply**: MEGMEET MP118TX (Monitor's internal PSU).
     *   **Integration**: Tapping into the **12V rail**.
     *   **Conversion**: [Klnuoxj 12V to 5V 3A USB-C Buck Converter](https://www.amazon.com/Klnuoxj-Converter-Interface-Waterproof-Compatible/dp/B0CRVW7N2J) powering the Raspberry Pi 5 directly from the monitor board.
+
+## Hardware Integration
+
+Here are some photos of the internal setup, highlighting the controller board, power distribution, and speaker wiring.
+
+![Hardware Overview 1](docs/images/IMG_8548.jpg)
+![Hardware Overview 2](docs/images/IMG_8549.jpg)
+![Speaker Wiring](docs/images/IMG_8550.jpg)
 
 ## Key Features
 
