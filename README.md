@@ -37,11 +37,36 @@ Here are some photos of the internal setup, highlighting the controller board, p
 *   **Mute Toggle**: One-click mute/unmute from the remote interface.
 *   **Auditory Feedback**: Plays a subtle "ding" sound when volume is adjusted to confirm the command was received.
 
+### 🎵 Spotify Connect
+*   **Mirror as Speaker**: The Pi acts as a Spotify Connect speaker device named "MagicMirror" via [Raspotify](https://github.com/dtcooper/raspotify) (librespot).
+*   **Now Playing Display**: The `MMM-OnSpotify` module shows album art, track info, and playback controls on the mirror.
+*   **Audio Output**: Routed through PipeWire → HDMI to the monitor's built-in speakers at 320kbps.
+*   **System Tweaks Applied**:
+    *   IPv6 disabled on wlan0 (NetworkManager) — fixes Spotify dealer websocket connection failures.
+    *   `pipewire-alsa` installed — bridges librespot's ALSA backend to PipeWire.
+    *   Raspotify runs as `duncandonuts` user (systemd override) to access the PipeWire audio session.
+
 ### 📱 Remote Interface
 *   **Enhanced UI**: Custom brightness and volume sliders added to `MMM-Remote-Control`.
 *   **Real-time Sync**: Power and volume changes are synchronized instantly across all connected remote devices.
 
+## Spotify Connect Troubleshooting
 
+If the mirror stops showing up as a Spotify device:
+```bash
+# Check service status
+systemctl status raspotify
+
+# Restart the service
+sudo systemctl restart raspotify
+
+# View logs for errors
+journalctl -u raspotify --no-pager -n 30
+
+# If "Network is unreachable" appears, verify IPv6 is disabled
+nmcli con show "netplan-wlan0-DuncanDonuts" | grep ipv6.method
+# Should show: ipv6.method: disabled
+```
 
 ## Installation
 

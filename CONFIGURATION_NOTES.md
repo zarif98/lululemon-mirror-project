@@ -41,6 +41,14 @@ I have updated your MagicMirror configuration to set the location to **San Franc
 - **YouTube Playback**: I successfully tested launching a specific YouTube video on the mirror's display using `chromium`. 
 - **Return to Dashboard**: I can bring back the MagicMirror dashboard by restarting the browser process.
 
+### 7. Spotify Connect (Raspotify)
+- **Service**: Installed `raspotify` (librespot v0.8.0) to make the Pi a Spotify Connect speaker named **"MagicMirror"**.
+- **Config**: `/etc/raspotify/conf` — 320kbps bitrate, ALSA backend, speaker device type, initial volume 80%.
+- **IPv6 Fix**: Disabled IPv6 on wlan0 via NetworkManager (`nmcli con modify "netplan-wlan0-DuncanDonuts" ipv6.method "disabled"`). Without this, librespot's dealer websocket connection fails with "Network is unreachable (os error 101)" because the Pi's IPv6 can't reach Spotify's dealer endpoints.
+- **PipeWire Bridge**: Installed `pipewire-alsa` package. Without it, ALSA applications (like librespot) can't open the audio device because PipeWire holds the hardware lock (error 524).
+- **User Override**: Created `/etc/systemd/system/raspotify.service.d/user-override.conf` to run raspotify as `duncandonuts` instead of the `raspotify` system user. This gives librespot access to the user's PipeWire audio session (`XDG_RUNTIME_DIR=/run/user/1000`).
+- **Volume**: System volume controlled via PipeWire (`wpctl set-volume @DEFAULT_AUDIO_SINK@ 1.0`) and monitor speakers via DDC (`ddcutil setvcp 62 100`).
+
 ## Troubleshooting
 
 - **Display Refresh Issue**: The mirror display wasn't automatically updating after the process restart. This happens because the browser process (Chromium) is separate from the MagicMirror server process.
