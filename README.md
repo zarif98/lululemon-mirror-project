@@ -81,3 +81,4 @@ npm install
 
 ## Credits
 Based on the amazing work by the [MagicMirror² Community](https://magicmirror.builders/).
+Huge shout-out to Sergio Bobadilla for all of the wiring/electrical work: https://www.linkedin.com/in/sergio-bobadilla/
