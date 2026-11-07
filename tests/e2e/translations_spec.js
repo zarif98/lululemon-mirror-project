@@ -1,5 +1,8 @@
+import * as hooks from "vitest";
+
 const fs = require("node:fs");
 const path = require("node:path");
+
 const helmet = require("helmet");
 const { JSDOM } = require("jsdom");
 const express = require("express");
@@ -27,7 +30,7 @@ function createTranslationTestEnvironment () {
 describe("translations", () => {
 	let server;
 
-	beforeAll(() => {
+	hooks.beforeAll(() => {
 		const app = express();
 		app.use(helmet());
 		app.use((req, res, next) => {
@@ -39,7 +42,7 @@ describe("translations", () => {
 		server = app.listen(3000);
 	});
 
-	afterAll(async () => {
+	hooks.afterAll(async () => {
 		await server.close();
 	});
 
@@ -54,7 +57,7 @@ describe("translations", () => {
 	describe("loadTranslations", () => {
 		let dom;
 
-		beforeEach(() => {
+		hooks.beforeEach(() => {
 			// Create a new translation test environment for each test
 			const env = createTranslationTestEnvironment();
 			const window = env.window;
@@ -175,7 +178,7 @@ describe("translations", () => {
 			return Translator.translations[mmm.name];
 		};
 
-		beforeAll(async () => {
+		hooks.beforeAll(async () => {
 			// Using German as the base rather than English, since
 			// some words do not have a direct translation in English.
 			const germanTranslations = await initializeTranslationDOM("de");
@@ -188,7 +191,7 @@ describe("translations", () => {
 			describe(`Translation keys of ${language}`, () => {
 				let keys;
 
-				beforeAll(async () => {
+				hooks.beforeAll(async () => {
 					const languageTranslations = await initializeTranslationDOM(language);
 					keys = Object.keys(languageTranslations).sort();
 				});

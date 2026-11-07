@@ -1,15 +1,17 @@
+import * as hooks from "vitest";
+
 const { expect } = require("playwright/test");
 const helpers = require("../helpers/global-setup");
 
 describe("Alert module", () => {
 	let page;
 
-	afterAll(async () => {
+	hooks.afterAll(async () => {
 		await helpers.stopApplication();
 	});
 
 	describe("with welcome_message set to false", () => {
-		beforeAll(async () => {
+		hooks.beforeAll(async () => {
 			await helpers.startApplication("tests/configs/modules/alert/welcome_false.js");
 			await helpers.getDocument();
 			page = helpers.getPage();
@@ -25,7 +27,7 @@ describe("Alert module", () => {
 	});
 
 	describe("with welcome_message set to true", () => {
-		beforeAll(async () => {
+		hooks.beforeAll(async () => {
 			await helpers.startApplication("tests/configs/modules/alert/welcome_true.js");
 			await helpers.getDocument();
 			page = helpers.getPage();
@@ -40,7 +42,7 @@ describe("Alert module", () => {
 	});
 
 	describe("with welcome_message set to custom string", () => {
-		beforeAll(async () => {
+		hooks.beforeAll(async () => {
 			await helpers.startApplication("tests/configs/modules/alert/welcome_string.js");
 			await helpers.getDocument();
 			page = helpers.getPage();

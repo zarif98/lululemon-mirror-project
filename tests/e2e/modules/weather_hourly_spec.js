@@ -1,3 +1,5 @@
+import * as hooks from "vitest";
+
 const { expect } = require("playwright/test");
 const helpers = require("../helpers/global-setup");
 const weatherFunc = require("../helpers/weather-functions");
@@ -5,12 +7,12 @@ const weatherFunc = require("../helpers/weather-functions");
 describe("Weather module: Weather Hourly Forecast", () => {
 	let page;
 
-	afterAll(async () => {
+	hooks.afterAll(async () => {
 		await weatherFunc.stopApplication();
 	});
 
 	describe("Default configuration", () => {
-		beforeAll(async () => {
+		hooks.beforeAll(async () => {
 			await weatherFunc.startApplication("tests/configs/modules/weather/hourlyweather_default.js", {});
 			page = helpers.getPage();
 		});
@@ -25,7 +27,7 @@ describe("Weather module: Weather Hourly Forecast", () => {
 	});
 
 	describe("Hourly weather options", () => {
-		beforeAll(async () => {
+		hooks.beforeAll(async () => {
 			await weatherFunc.startApplication("tests/configs/modules/weather/hourlyweather_options.js", {});
 			page = helpers.getPage();
 		});
@@ -42,7 +44,7 @@ describe("Weather module: Weather Hourly Forecast", () => {
 	});
 
 	describe("Show precipitations", () => {
-		beforeAll(async () => {
+		hooks.beforeAll(async () => {
 			await weatherFunc.startApplication("tests/configs/modules/weather/hourlyweather_showPrecipitation.js", {});
 			page = helpers.getPage();
 		});

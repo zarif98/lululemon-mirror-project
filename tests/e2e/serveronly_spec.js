@@ -1,3 +1,5 @@
+import * as hooks from "vitest";
+
 const delay = (time) => {
 	return new Promise((resolve) => setTimeout(resolve, time));
 };
@@ -10,7 +12,7 @@ const runConfigCheck = async () => {
 describe("App environment", () => {
 	let serverProcess;
 
-	beforeAll(async () => {
+	hooks.beforeAll(async () => {
 		// Use fixed port 8080 (tests run sequentially)
 		const testPort = 8080;
 
@@ -20,7 +22,7 @@ describe("App environment", () => {
 		// we have to wait until the server is started
 		await delay(2000);
 	});
-	afterAll(async () => {
+	hooks.afterAll(async () => {
 		await process.kill(-serverProcess.pid);
 	});
 

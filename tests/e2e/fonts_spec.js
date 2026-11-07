@@ -1,3 +1,5 @@
+import * as hooks from "vitest";
+
 const helpers = require("./helpers/global-setup");
 
 describe("All font files from roboto.css should be downloadable", () => {
@@ -13,10 +15,10 @@ describe("All font files from roboto.css should be downloadable", () => {
 		match = regex.exec(fileContent);
 	}
 
-	beforeAll(async () => {
+	hooks.beforeAll(async () => {
 		await helpers.startApplication("tests/configs/without_modules.js");
 	});
-	afterAll(async () => {
+	hooks.afterAll(async () => {
 		await helpers.stopApplication();
 	});
 
