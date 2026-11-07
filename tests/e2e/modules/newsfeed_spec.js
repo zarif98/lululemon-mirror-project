@@ -1,4 +1,7 @@
+import * as hooks from "vitest";
+
 const fs = require("node:fs");
+
 const { expect } = require("playwright/test");
 const helpers = require("../helpers/global-setup");
 
@@ -6,7 +9,7 @@ const runTests = async () => {
 	let page;
 
 	describe("Default configuration", () => {
-		beforeAll(async () => {
+		hooks.beforeAll(async () => {
 			await helpers.startApplication("tests/configs/modules/newsfeed/default.js");
 			await helpers.getDocument();
 			page = helpers.getPage();
@@ -27,7 +30,7 @@ const runTests = async () => {
 	});
 
 	describe("Custom configuration", () => {
-		beforeAll(async () => {
+		hooks.beforeAll(async () => {
 			await helpers.startApplication("tests/configs/modules/newsfeed/prohibited_words.js");
 			await helpers.getDocument();
 			page = helpers.getPage();
@@ -46,7 +49,7 @@ const runTests = async () => {
 	});
 
 	describe("Invalid configuration", () => {
-		beforeAll(async () => {
+		hooks.beforeAll(async () => {
 			await helpers.startApplication("tests/configs/modules/newsfeed/incorrect_url.js");
 			await helpers.getDocument();
 			page = helpers.getPage();
@@ -58,7 +61,7 @@ const runTests = async () => {
 	});
 
 	describe("Ignore items", () => {
-		beforeAll(async () => {
+		hooks.beforeAll(async () => {
 			await helpers.startApplication("tests/configs/modules/newsfeed/ignore_items.js");
 			await helpers.getDocument();
 			page = helpers.getPage();
@@ -71,7 +74,7 @@ const runTests = async () => {
 };
 
 describe("Newsfeed module", () => {
-	afterAll(async () => {
+	hooks.afterAll(async () => {
 		await helpers.stopApplication();
 	});
 
@@ -79,12 +82,12 @@ describe("Newsfeed module", () => {
 });
 
 describe("Newsfeed module located in config directory", () => {
-	beforeAll(() => {
+	hooks.beforeAll(() => {
 		fs.cpSync(`${global.root_path}/modules/default/newsfeed`, `${global.root_path}/config/newsfeed`, { recursive: true });
 		process.env.MM_MODULES_DIR = "config";
 	});
 
-	afterAll(async () => {
+	hooks.afterAll(async () => {
 		await helpers.stopApplication();
 	});
 

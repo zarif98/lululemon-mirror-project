@@ -1,3 +1,5 @@
+import * as hooks from "vitest";
+
 const { expect } = require("playwright/test");
 const helpers = require("../helpers/global-setup");
 
@@ -17,13 +19,13 @@ describe("Compliments module", () => {
 		expect(complimentsArray).toContain(content);
 	};
 
-	afterAll(async () => {
+	hooks.afterAll(async () => {
 		await helpers.stopApplication();
 	});
 
 	describe("Feature anytime in compliments module", () => {
 		describe("Set anytime and empty compliments for morning, evening and afternoon", () => {
-			beforeAll(async () => {
+			hooks.beforeAll(async () => {
 				await helpers.startApplication("tests/configs/modules/compliments/compliments_anytime.js");
 				await helpers.getDocument();
 				page = helpers.getPage();
@@ -35,7 +37,7 @@ describe("Compliments module", () => {
 		});
 
 		describe("Only anytime present in configuration compliments", () => {
-			beforeAll(async () => {
+			hooks.beforeAll(async () => {
 				await helpers.startApplication("tests/configs/modules/compliments/compliments_only_anytime.js");
 				await helpers.getDocument();
 				page = helpers.getPage();
@@ -48,7 +50,7 @@ describe("Compliments module", () => {
 	});
 
 	describe("remoteFile option", () => {
-		beforeAll(async () => {
+		hooks.beforeAll(async () => {
 			await helpers.startApplication("tests/configs/modules/compliments/compliments_remote.js");
 			await helpers.getDocument();
 			page = helpers.getPage();
@@ -61,7 +63,7 @@ describe("Compliments module", () => {
 
 	describe("Feature specialDayUnique in compliments module", () => {
 		describe("specialDayUnique is false", () => {
-			beforeAll(async () => {
+			hooks.beforeAll(async () => {
 				await helpers.startApplication("tests/configs/modules/compliments/compliments_specialDayUnique_false.js");
 				await helpers.getDocument();
 				page = helpers.getPage();
@@ -73,7 +75,7 @@ describe("Compliments module", () => {
 		});
 
 		describe("specialDayUnique is true", () => {
-			beforeAll(async () => {
+			hooks.beforeAll(async () => {
 				await helpers.startApplication("tests/configs/modules/compliments/compliments_specialDayUnique_true.js");
 				await helpers.getDocument();
 				page = helpers.getPage();
@@ -85,7 +87,7 @@ describe("Compliments module", () => {
 		});
 
 		describe("cron type key", () => {
-			beforeAll(async () => {
+			hooks.beforeAll(async () => {
 				await helpers.startApplication("tests/configs/modules/compliments/compliments_e2e_cron_entry.js");
 				await helpers.getDocument();
 				page = helpers.getPage();
@@ -99,7 +101,7 @@ describe("Compliments module", () => {
 
 	describe("Feature remote compliments file", () => {
 		describe("get list from remote file", () => {
-			beforeAll(async () => {
+			hooks.beforeAll(async () => {
 				await helpers.startApplication("tests/configs/modules/compliments/compliments_file.js");
 				await helpers.getDocument();
 				page = helpers.getPage();
@@ -108,13 +110,13 @@ describe("Compliments module", () => {
 				//await helpers.startApplication("tests/configs/modules/compliments/compliments_file.js", "01 Jan 2022 10:00:00 GMT");
 				await doTest(["Remote compliment file works!"]);
 			});
-			//			afterAll(async () =>{
+			//			hooks.afterAll(async () =>{
 			//				await helpers.stopApplication()
 			//			});
 		});
 
 		describe("get list from remote file w update", () => {
-			beforeAll(async () => {
+			hooks.beforeAll(async () => {
 				await helpers.startApplication("tests/configs/modules/compliments/compliments_file_change.js");
 				await helpers.getDocument();
 				page = helpers.getPage();
@@ -125,7 +127,7 @@ describe("Compliments module", () => {
 				await new Promise((r) => setTimeout(r, 10000));
 				await doTest(["test in morning"]);
 			});
-			//			afterAll(async () =>{
+			//			hooks.afterAll(async () =>{
 			//				await helpers.stopApplication()
 			//			});
 		});

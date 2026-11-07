@@ -1,13 +1,15 @@
+import * as hooks from "vitest";
+
 const helpers = require("./helpers/global-setup");
 
 const getPage = () => helpers.getPage();
 
 describe("Position of modules", () => {
-	beforeAll(async () => {
+	hooks.beforeAll(async () => {
 		await helpers.startApplication("tests/configs/modules/positions.js");
 		await helpers.getDocument();
 	});
-	afterAll(async () => {
+	hooks.afterAll(async () => {
 		await helpers.stopApplication();
 	});
 

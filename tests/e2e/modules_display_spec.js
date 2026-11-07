@@ -1,15 +1,17 @@
+import * as hooks from "vitest";
+
 const { expect } = require("playwright/test");
 const helpers = require("./helpers/global-setup");
 
 describe("Display of modules", () => {
 	let page;
 
-	beforeAll(async () => {
+	hooks.beforeAll(async () => {
 		await helpers.startApplication("tests/configs/modules/display.js");
 		await helpers.getDocument();
 		page = helpers.getPage();
 	});
-	afterAll(async () => {
+	hooks.afterAll(async () => {
 		await helpers.stopApplication();
 	});
 

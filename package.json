@@ -74,6 +74,11 @@
 		"*.js": "eslint --fix",
 		"*.css": "stylelint --fix"
 	},
+	"overrides": {
+		"basic-ftp": "^6.2.1",
+		"js-yaml": "^4.3.2",
+		"markdown-it": "^14.3.3"
+	},
 	"dependencies": {
 		"@fontsource/roboto": "^5.2.9",
 		"@fontsource/roboto-condensed": "^5.2.8",
@@ -130,9 +135,5 @@
 	},
 	"engines": {
 		"node": ">=22.21.1 <23 || >=24"
-	},
-	"overrides": {
-		"js-yaml": "^4.3.2",
-		"markdown-it": "^14.3.3"
 	}
 }
