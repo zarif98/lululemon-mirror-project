@@ -94,7 +94,7 @@
 		"moment-timezone": "^0.6.0",
 		"node-ical": "^0.22.1",
 		"nunjucks": "^3.2.4",
-		"pm2": "^6.0.14",
+		"pm2": "^7.1.2",
 		"socket.io": "^4.8.3",
 		"suncalc": "^1.9.0",
 		"systeminformation": "^5.28.2",
