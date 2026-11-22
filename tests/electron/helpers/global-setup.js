@@ -44,11 +44,10 @@ exports.startApplication = async (configFilename, systemDate = null, electronPar
 		if (title === "MagicMirror²") {
 			global.page = win;
 			if (systemDate) {
-				await global.page.evaluate((systemDate) => {
-					Date.now = () => {
-						return new Date(systemDate).valueOf();
-					};
-				}, systemDate);
+				// Install before module startup, not after the first compliment was rendered.
+				// Reload also makes the first Electron window independent of launch timing.
+				await global.page.clock.setFixedTime(new Date(systemDate));
+				await global.page.reload();
 			}
 		}
 	}
@@ -58,7 +57,7 @@ exports.stopApplication = async (timeout = 10000) => {
 	const app = global.electronApp;
 	global.electronApp = null;
 	global.page = null;
-	process.env.MOCK_DATE = undefined;
+	delete process.env.MOCK_DATE;
 
 	if (!app) {
 		return;
