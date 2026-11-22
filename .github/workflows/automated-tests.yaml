@@ -5,9 +5,9 @@ name: "Run Automated Tests"
 
 on:
   push:
-    branches: [master, develop]
+    branches: [main, master, develop]
   pull_request:
-    branches: [master, develop]
+    branches: [main, master, develop]
 
 permissions:
   contents: read
@@ -64,6 +64,8 @@ jobs:
           npx playwright install --with-deps chromium
       - name: "Prepare environment for tests"
         run: |
+          # Electron 42 downloads its binary lazily; install before configuring the sandbox.
+          npx --no-install install-electron
           # Fix chrome-sandbox permissions:
           sudo chown root:root ./node_modules/electron/dist/chrome-sandbox
           sudo chmod 4755 ./node_modules/electron/dist/chrome-sandbox
