@@ -1,3 +1,4 @@
+# This repository uses main as its development/default branch; upstream uses develop.
 # This workflow enforces on every pull request that the PR is not based against master,
 # taken from https://github.com/oppia/oppia-android/blob/develop/.github/workflows/static_checks.yml
 
@@ -16,11 +17,11 @@ jobs:
     if: github.event_name == 'pull_request'
     timeout-minutes: 10
     steps:
-      - name: "Branch is not based on develop"
-        if: ${{ github.base_ref != 'develop' && !contains(github.event.pull_request.labels.*.name, 'mastermerge') }}
+      - name: "Branch does not target the development branch"
+        if: ${{ github.base_ref != 'develop' && github.base_ref != 'main' && !contains(github.event.pull_request.labels.*.name, 'mastermerge') }}
         run: |
           echo "Current base branch: $BASE_BRANCH"
-          echo "Note: PRs should only ever be merged into develop so please rebase your branch on develop and try again."
+          echo "Note: PRs must target develop (upstream) or main (this repository); other bases require the existing mastermerge release exception."
           exit 1
         env:
           BASE_BRANCH: ${{ github.base_ref }}

@@ -1,3 +1,5 @@
+import * as hooks from "vitest";
+
 const { expect } = require("playwright/test");
 const moment = require("moment");
 const helpers = require("../helpers/global-setup");
@@ -5,12 +7,12 @@ const helpers = require("../helpers/global-setup");
 describe("Clock module", () => {
 	let page;
 
-	afterAll(async () => {
+	hooks.afterAll(async () => {
 		await helpers.stopApplication();
 	});
 
 	describe("with default 24hr clock config", () => {
-		beforeAll(async () => {
+		hooks.beforeAll(async () => {
 			await helpers.startApplication("tests/configs/modules/clock/clock_24hr.js");
 			await helpers.getDocument();
 			page = helpers.getPage();
@@ -28,7 +30,7 @@ describe("Clock module", () => {
 	});
 
 	describe("with default 12hr clock config", () => {
-		beforeAll(async () => {
+		hooks.beforeAll(async () => {
 			await helpers.startApplication("tests/configs/modules/clock/clock_12hr.js");
 			await helpers.getDocument();
 			page = helpers.getPage();
@@ -51,7 +53,7 @@ describe("Clock module", () => {
 	});
 
 	describe("with showPeriodUpper config enabled", () => {
-		beforeAll(async () => {
+		hooks.beforeAll(async () => {
 			await helpers.startApplication("tests/configs/modules/clock/clock_showPeriodUpper.js");
 			await helpers.getDocument();
 			page = helpers.getPage();
@@ -64,7 +66,7 @@ describe("Clock module", () => {
 	});
 
 	describe("with displaySeconds config disabled", () => {
-		beforeAll(async () => {
+		hooks.beforeAll(async () => {
 			await helpers.startApplication("tests/configs/modules/clock/clock_displaySeconds_false.js");
 			await helpers.getDocument();
 			page = helpers.getPage();
@@ -77,7 +79,7 @@ describe("Clock module", () => {
 	});
 
 	describe("with showTime config disabled", () => {
-		beforeAll(async () => {
+		hooks.beforeAll(async () => {
 			await helpers.startApplication("tests/configs/modules/clock/clock_showTime.js");
 			await helpers.getDocument();
 			page = helpers.getPage();
@@ -89,7 +91,7 @@ describe("Clock module", () => {
 	});
 
 	describe("with showSun/MoonTime enabled", () => {
-		beforeAll(async () => {
+		hooks.beforeAll(async () => {
 			await helpers.startApplication("tests/configs/modules/clock/clock_showSunMoon.js");
 			await helpers.getDocument();
 			page = helpers.getPage();
@@ -106,7 +108,7 @@ describe("Clock module", () => {
 	});
 
 	describe("with showSunNextEvent disabled", () => {
-		beforeAll(async () => {
+		hooks.beforeAll(async () => {
 			await helpers.startApplication("tests/configs/modules/clock/clock_showSunNoEvent.js");
 			await helpers.getDocument();
 			page = helpers.getPage();
@@ -119,7 +121,7 @@ describe("Clock module", () => {
 	});
 
 	describe("with showWeek config enabled", () => {
-		beforeAll(async () => {
+		hooks.beforeAll(async () => {
 			await helpers.startApplication("tests/configs/modules/clock/clock_showWeek.js");
 			await helpers.getDocument();
 			page = helpers.getPage();
@@ -138,7 +140,7 @@ describe("Clock module", () => {
 	});
 
 	describe("with showWeek short config enabled", () => {
-		beforeAll(async () => {
+		hooks.beforeAll(async () => {
 			await helpers.startApplication("tests/configs/modules/clock/clock_showWeek_short.js");
 			await helpers.getDocument();
 			page = helpers.getPage();
@@ -157,7 +159,7 @@ describe("Clock module", () => {
 	});
 
 	describe("with analog clock face enabled", () => {
-		beforeAll(async () => {
+		hooks.beforeAll(async () => {
 			await helpers.startApplication("tests/configs/modules/clock/clock_analog.js");
 			await helpers.getDocument();
 			page = helpers.getPage();
@@ -169,7 +171,7 @@ describe("Clock module", () => {
 	});
 
 	describe("with analog clock face and date enabled", () => {
-		beforeAll(async () => {
+		hooks.beforeAll(async () => {
 			await helpers.startApplication("tests/configs/modules/clock/clock_showDateAnalog.js");
 			await helpers.getDocument();
 			page = helpers.getPage();

@@ -1,15 +1,17 @@
+import * as hooks from "vitest";
+
 const { expect } = require("playwright/test");
 const helpers = require("../helpers/global-setup");
 
 describe("Clock set to german language module", () => {
 	let page;
 
-	afterAll(async () => {
+	hooks.afterAll(async () => {
 		await helpers.stopApplication();
 	});
 
 	describe("with showWeek config enabled", () => {
-		beforeAll(async () => {
+		hooks.beforeAll(async () => {
 			await helpers.startApplication("tests/configs/modules/clock/de/clock_showWeek.js");
 			await helpers.getDocument();
 			page = helpers.getPage();
@@ -22,7 +24,7 @@ describe("Clock set to german language module", () => {
 	});
 
 	describe("with showWeek short config enabled", () => {
-		beforeAll(async () => {
+		hooks.beforeAll(async () => {
 			await helpers.startApplication("tests/configs/modules/clock/de/clock_showWeek_short.js");
 			await helpers.getDocument();
 			page = helpers.getPage();

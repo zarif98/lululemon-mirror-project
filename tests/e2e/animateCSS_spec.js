@@ -1,3 +1,5 @@
+import * as hooks from "vitest";
+
 const { expect } = require("playwright/test");
 const helpers = require("./helpers/global-setup");
 
@@ -73,7 +75,7 @@ describe("AnimateCSS integration Test", () => {
 		}
 	}
 
-	afterEach(async () => {
+	hooks.afterEach(async () => {
 		await helpers.stopApplication();
 	});
 

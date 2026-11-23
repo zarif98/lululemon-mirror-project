@@ -1,11 +1,13 @@
+import * as hooks from "vitest";
+
 const helpers = require("./helpers/global-setup");
 
 describe("port directive configuration", () => {
 	describe("Set port 8090", () => {
-		beforeAll(async () => {
+		hooks.beforeAll(async () => {
 			await helpers.startApplication("tests/configs/port_8090.js");
 		});
-		afterAll(async () => {
+		hooks.afterAll(async () => {
 			await helpers.stopApplication();
 		});
 
@@ -17,10 +19,10 @@ describe("port directive configuration", () => {
 	});
 
 	describe("Set port 8100 on environment variable MM_PORT", () => {
-		beforeAll(async () => {
+		hooks.beforeAll(async () => {
 			await helpers.startApplication("tests/configs/port_8090.js", (process.env.MM_PORT = 8100));
 		});
-		afterAll(async () => {
+		hooks.afterAll(async () => {
 			await helpers.stopApplication();
 		});
 

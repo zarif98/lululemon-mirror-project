@@ -1,11 +1,13 @@
+import * as hooks from "vitest";
+
 const helpers = require("./helpers/global-setup");
 
 describe("ipWhitelist directive configuration", () => {
 	describe("When IP is not in whitelist", () => {
-		beforeAll(async () => {
+		hooks.beforeAll(async () => {
 			await helpers.startApplication("tests/configs/noIpWhiteList.js");
 		});
-		afterAll(async () => {
+		hooks.afterAll(async () => {
 			await helpers.stopApplication();
 		});
 
@@ -17,10 +19,10 @@ describe("ipWhitelist directive configuration", () => {
 	});
 
 	describe("When whitelist is empty (allow all IPs)", () => {
-		beforeAll(async () => {
+		hooks.beforeAll(async () => {
 			await helpers.startApplication("tests/configs/empty_ipWhiteList.js");
 		});
-		afterAll(async () => {
+		hooks.afterAll(async () => {
 			await helpers.stopApplication();
 		});
 

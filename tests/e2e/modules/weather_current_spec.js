@@ -1,3 +1,5 @@
+import * as hooks from "vitest";
+
 const { expect } = require("playwright/test");
 const helpers = require("../helpers/global-setup");
 const weatherFunc = require("../helpers/weather-functions");
@@ -5,13 +7,13 @@ const weatherFunc = require("../helpers/weather-functions");
 describe("Weather module", () => {
 	let page;
 
-	afterAll(async () => {
+	hooks.afterAll(async () => {
 		await weatherFunc.stopApplication();
 	});
 
 	describe("Current weather", () => {
 		describe("Default configuration", () => {
-			beforeAll(async () => {
+			hooks.beforeAll(async () => {
 				await weatherFunc.startApplication("tests/configs/modules/weather/currentweather_default.js", {});
 				page = helpers.getPage();
 			});
@@ -37,7 +39,7 @@ describe("Weather module", () => {
 	});
 
 	describe("Compliments Integration", () => {
-		beforeAll(async () => {
+		hooks.beforeAll(async () => {
 			await weatherFunc.startApplication("tests/configs/modules/weather/currentweather_compliments.js", {});
 			page = helpers.getPage();
 		});
@@ -50,7 +52,7 @@ describe("Weather module", () => {
 	});
 
 	describe("Configuration Options", () => {
-		beforeAll(async () => {
+		hooks.beforeAll(async () => {
 			await weatherFunc.startApplication("tests/configs/modules/weather/currentweather_options.js", {});
 			page = helpers.getPage();
 		});
@@ -78,7 +80,7 @@ describe("Weather module", () => {
 	});
 
 	describe("Current weather with imperial units", () => {
-		beforeAll(async () => {
+		hooks.beforeAll(async () => {
 			await weatherFunc.startApplication("tests/configs/modules/weather/currentweather_units.js", {});
 			page = helpers.getPage();
 		});

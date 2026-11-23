@@ -1,11 +1,14 @@
+import * as hooks from "vitest";
+
 const fs = require("node:fs");
+
 const helpers = require("./helpers/global-setup");
 
 describe("templated config with port variable", () => {
-	beforeAll(async () => {
+	hooks.beforeAll(async () => {
 		await helpers.startApplication("tests/configs/port_variable.js");
 	});
-	afterAll(async () => {
+	hooks.afterAll(async () => {
 		await helpers.stopApplication();
 		try {
 			fs.unlinkSync("tests/configs/port_variable.js");

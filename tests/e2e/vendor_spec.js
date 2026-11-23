@@ -1,10 +1,12 @@
+import * as hooks from "vitest";
+
 const helpers = require("./helpers/global-setup");
 
 describe("Vendors", () => {
-	beforeAll(async () => {
+	hooks.beforeAll(async () => {
 		await helpers.startApplication("tests/configs/default.js");
 	});
-	afterAll(async () => {
+	hooks.afterAll(async () => {
 		await helpers.stopApplication();
 	});
 

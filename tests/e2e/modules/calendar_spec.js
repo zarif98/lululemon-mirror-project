@@ -1,3 +1,5 @@
+import * as hooks from "vitest";
+
 const { expect } = require("playwright/test");
 const helpers = require("../helpers/global-setup");
 const serverBasicAuth = require("../helpers/basic-auth");
@@ -25,12 +27,12 @@ describe("Calendar module", () => {
 		await expect(page.locator(selector).first()).toContainText(expectedText);
 	};
 
-	afterAll(async () => {
+	hooks.afterAll(async () => {
 		await helpers.stopApplication();
 	});
 
 	describe("Default configuration", () => {
-		beforeAll(async () => {
+		hooks.beforeAll(async () => {
 			await helpers.startApplication("tests/configs/modules/calendar/default.js");
 			await helpers.getDocument();
 			page = helpers.getPage();
@@ -46,7 +48,7 @@ describe("Calendar module", () => {
 	});
 
 	describe("Custom configuration", () => {
-		beforeAll(async () => {
+		hooks.beforeAll(async () => {
 			await helpers.startApplication("tests/configs/modules/calendar/custom.js");
 			await helpers.getDocument();
 			page = helpers.getPage();
@@ -78,7 +80,7 @@ describe("Calendar module", () => {
 	});
 
 	describe("Recurring event", () => {
-		beforeAll(async () => {
+		hooks.beforeAll(async () => {
 			await helpers.startApplication("tests/configs/modules/calendar/recurring.js");
 			await helpers.getDocument();
 			page = helpers.getPage();
@@ -91,7 +93,7 @@ describe("Calendar module", () => {
 
 	//Will contain everyday an fullDayEvent that starts today and ends tomorrow, and one starting tomorrow and ending the day after tomorrow
 	describe("FullDayEvent over several days should show how many days are left from the from the starting date on", () => {
-		beforeAll(async () => {
+		hooks.beforeAll(async () => {
 			await helpers.startApplication("tests/configs/modules/calendar/long-fullday-event.js");
 			await helpers.getDocument();
 			page = helpers.getPage();
@@ -108,7 +110,7 @@ describe("Calendar module", () => {
 	});
 
 	describe("FullDayEvent Single day, should show Today", () => {
-		beforeAll(async () => {
+		hooks.beforeAll(async () => {
 			await helpers.startApplication("tests/configs/modules/calendar/single-fullday-event.js");
 			await helpers.getDocument();
 			page = helpers.getPage();
@@ -123,14 +125,14 @@ describe("Calendar module", () => {
 	});
 
 	describe("Changed port", () => {
-		beforeAll(async () => {
+		hooks.beforeAll(async () => {
 			await helpers.startApplication("tests/configs/modules/calendar/changed-port.js");
 			serverBasicAuth.listen(8010);
 			await helpers.getDocument();
 			page = helpers.getPage();
 		});
 
-		afterAll(async () => {
+		hooks.afterAll(async () => {
 			await serverBasicAuth.close();
 		});
 
@@ -140,7 +142,7 @@ describe("Calendar module", () => {
 	});
 
 	describe("Basic auth", () => {
-		beforeAll(async () => {
+		hooks.beforeAll(async () => {
 			await helpers.startApplication("tests/configs/modules/calendar/basic-auth.js");
 			await helpers.getDocument();
 			page = helpers.getPage();
@@ -152,7 +154,7 @@ describe("Calendar module", () => {
 	});
 
 	describe("Basic auth by default", () => {
-		beforeAll(async () => {
+		hooks.beforeAll(async () => {
 			await helpers.startApplication("tests/configs/modules/calendar/auth-default.js");
 			await helpers.getDocument();
 			page = helpers.getPage();
@@ -164,7 +166,7 @@ describe("Calendar module", () => {
 	});
 
 	describe("Basic auth backward compatibility configuration: DEPRECATED", () => {
-		beforeAll(async () => {
+		hooks.beforeAll(async () => {
 			await helpers.startApplication("tests/configs/modules/calendar/old-basic-auth.js");
 			await helpers.getDocument();
 			page = helpers.getPage();
@@ -176,14 +178,14 @@ describe("Calendar module", () => {
 	});
 
 	describe("Fail Basic auth", () => {
-		beforeAll(async () => {
+		hooks.beforeAll(async () => {
 			await helpers.startApplication("tests/configs/modules/calendar/fail-basic-auth.js");
 			serverBasicAuth.listen(8020);
 			await helpers.getDocument();
 			page = helpers.getPage();
 		});
 
-		afterAll(async () => {
+		hooks.afterAll(async () => {
 			await serverBasicAuth.close();
 		});
 
