@@ -101,7 +101,7 @@
 		"nunjucks": "^3.2.4",
 		"pm2": "^6.0.14",
 		"socket.io": "^4.8.3",
-		"suncalc": "^1.9.0",
+		"suncalc": "^2.1.4",
 		"systeminformation": "^5.28.2",
 		"undici": "^7.16.0",
 		"weathericons": "^2.1.0"
